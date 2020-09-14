@@ -1,0 +1,45 @@
+<div class="container-fluid mt-4" style="font-size: 20px; padding-right:3em; padding-left: 3em">
+    <i class="material-icons" style="font-size: 30px"> assignment </i> Reportes
+</div>
+<br>
+<div class="container">
+    En esta sección usted podrá exportar en archivos de Excel los siguientes casos:
+    <hr>
+    <div class="container-fluid mt-4">
+        <strong>INVENTARIADO</strong>
+        <div class="row">
+            <div class="col-md-12">
+                Exportar a Excel el Inventario Actual :D
+                <button class="ml-3" mat-raised-button style="background: #1D6F42; color: white" (click)="verStock()">
+                    <i class="material-icons" style="color:white"> archive</i> Ver Stock </button>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="container-fluid mt-3">
+        <strong>VENTAS</strong>
+        <div class=" row ">
+            <div class="col-md-12">
+                <span>Exportar a Excel las ventas realizadas por fecha</span>
+                <button class="ml-3" mat-raised-button style="background: #1D6F42; color: white" (click)="exportarVentas()">
+                    <i class="material-icons" style="color:white"> archive</i> Ventas Generales </button>
+            </div>
+            <div class="col-md-12 mt-1">
+                <span class="mt-n3">Exportar a Excel las ventas realizadas por fecha</span>
+                <mat-form-field class="ml-3 fecha">
+                    <input matInput id="fechaInicio" [matDatepicker]="fechaInicio" placeholder="Fecha de Inicio">
+                    <mat-datepicker-toggle matSuffix [for]="fechaInicio"></mat-datepicker-toggle>
+                    <mat-datepicker #fechaInicio></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="ml-2 fecha">
+                    <input id="fechaFin" matInput [matDatepicker]="fechaFin" placeholder="Fecha de Fin">
+                    <mat-datepicker-toggle matSuffix [for]="fechaFin"></mat-datepicker-toggle>
+                    <mat-datepicker #fechaFin></mat-datepicker>
+                </mat-form-field>
+                <button class="ml-3" mat-raised-button style="background: #1D6F42; color: white" (click)=" exportarVentasPorFecha() ">
+                    <i class="material-icons" style="color:white"> archive</i> Ventas por Fecha </button>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,99 @@
+<div class="container-fluid mt-4" style="font-size: 20px; padding-right:3em; padding-left: 3em">
+    <i class="material-icons" style="font-size: 30px">edit</i> Editar Cliente
+</div>
+
+<div class="container mt-4">
+    Coloque correctamente los datos que correspondan.
+</div>
+
+<div class="container mt-1 ">
+    <mat-card>
+        <form class="mt-2" [formGroup]="editClienteForm">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 text-center" style="font-size: 1.7em">
+                    DNI - {{idParam}}
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <br>
+
+            <div class="row mt-2">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <mat-form-field hintLabel="Max 60 caracteres" appearance="fill">
+                        <mat-label>Nombres</mat-label>
+                        <input maxlength="60" matInput formControlName="nombres"
+                        onKeypress="if (event.keyCode != 32 && (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode != 241 && event.keyCode != 209 && event.keyCode != 225 && event.keyCode != 233 && event.keyCode != 237 && event.keyCode != 243 && event.keyCode != 250 && event.keyCode != 193 && event.keyCode != 201 && event.keyCode != 205 && event.keyCode != 211 && event.keyCode != 218) event.returnValue = false;">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <br>
+
+            <div class="row mt-2">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <mat-form-field hintLabel="Max 60 caracteres" appearance="fill">
+                        <mat-label>Apellidos</mat-label>
+                        <input maxlength="60" matInput formControlName="apellidos"
+                        onKeypress="if (event.keyCode != 32 && (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode != 241 && event.keyCode != 209 && event.keyCode != 225 && event.keyCode != 233 && event.keyCode != 237 && event.keyCode != 243 && event.keyCode != 250 && event.keyCode != 193 && event.keyCode != 201 && event.keyCode != 205 && event.keyCode != 211 && event.keyCode != 218) event.returnValue = false;">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <mat-form-field hintLabel="Max 60 caracteres" appearance="fill">
+                        <mat-label>Direccion</mat-label>
+                        <input maxlength="60" matInput formControlName="direccion">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-4">
+                    <mat-form-field hintLabel="Max 9 dígitos" appearance="fill">
+                        <mat-label>Telefono</mat-label>
+                        <input maxlength="9" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" matInput formControlName="telefono">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field hintLabel="Max 9 dígitos" appearance="fill">
+                        <mat-label>Celular</mat-label>
+                        <input maxlength="9" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" matInput formControlName="celular">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <mat-form-field hintLabel="Max 50 caracteres" appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input maxlength="50" matInput formControlName="email">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <br>
+
+            <div class="row text-right mt-2">
+                <div class="col-md-4"></div>
+                <div class="col-md-6">
+                    <a mat-button [routerLink]="[ '/home/clientes' ]"> Regresar</a>
+                    <button class="ml-2" mat-raised-button color="primary" (click)="verValor()">Actualizar</button>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </form>
+    </mat-card>
+</div>

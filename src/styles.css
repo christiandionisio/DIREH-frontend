@@ -1,0 +1,82 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.material-icons {
+    height: 26px;
+    margin: 0 4px 3px 0;
+    vertical-align: middle;
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+.material-icons.md-dark {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.material-icons.md-dark.md-inactive {
+    color: rgba(0, 0, 0, 0.26);
+}
+
+.material-icons.md-light {
+    color: rgba(255, 255, 255, 1);
+}
+
+.material-icons.md-light.md-inactive {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.modal-header {
+    /* background: linear-gradient(to right, #02335e 0%, #1e5d88 25%, #3a87b3 50%, #30a3bb 75%, #27c0c3 100%) !important; */
+    background: #3f51b5;
+}
+
+.modal-header h5 i {
+    color: white !important;
+}
+
+.modal-header h5 {
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+}
+
+.mat-header-cell {
+    background-color: #a2c8f2;
+    color: black;
+}
+
+/* .mt-5 .mat-flat-button.mat-primary {
+    background-color: #428bca !important;
+
+}
+
+.modal-footer .mat-flat-button.mat-primary {
+    background-color: #428bca !important;
+
+} */

@@ -1,0 +1,71 @@
+<nav class="navbar navbar-expand-lg navbar-light mat-elevation-z2 example-header" style=" text-align: center; background: #003c8f; color: white">
+    <a mat-button (click)="sidenav.toggle()">
+        <i style="color:white" class="material-icons"> menu </i>
+    </a>
+    <a mat-button class="navbar-brand mat-button">
+        <span style="color: white; font-size: 1.3em"><i class="material-icons docs-angular-logo">important_devices</i>
+            Sistema de Diagnóstico de Retinopatía Hipertensiva (DIREH) </span></a>
+</nav>
+
+<mat-sidenav-container class="sidenav-container">
+<!-- <mat-sidenav #sidenav mode="side" opened class="example-sidenav" style="background: rgb(34,69,98,90%)"> -->
+    <mat-sidenav #sidenav mode="side" opened class="example-sidenav" style="background:rgb(44, 62, 80); z-index: -1;">
+        <hr>
+        <div style="height: 150px;" class="text-center">
+            <p class="mt-1" style="color: white; font-size: 16px; font-family: sans-serif; font-weight: bold">Bienvenido</p>
+            <!-- <label for="file-input">
+                <img src="../../../assets/user.png" alt="" width="64px" title="Cambiar imagen"
+                    style="cursor: pointer; border-radius: 72px; width:72px; height:72px" *ngIf="!empleado.img">
+                <img src="{{url+'/get-image/'+empleado.img}}" alt="" width="64px"
+                    style="cursor: pointer; border-radius: 72px; width:72px; height:72px" title="Cambiar imagen"
+                    *ngIf="empleado.img" /></label>
+            <input id="file-input" name="foto" type="file" style="display: none" (change)="fileChangeEvent($event)" /> -->
+            <p style="color: white; font-size: 16px; font-family: sans-serif; font-weight: bold">{{oftalmologo.nombres.split(" ")[0]}} {{oftalmologo.apaterno.split(" ")[0]}}</p>
+            <button mat-raised-button color="warn" (click)="logout()">Cerrar Sesión</button>
+        </div>
+        <mat-divider></mat-divider>
+        <mat-toolbar style="background: transparent">
+            
+            <mat-toolbar-row id="btn-diagnostico" [routerLink]="[ '/home/diagnostico']" routerLinkActive="active-link">
+                <span *ngIf="isExpanded || isShowing" style="color: white">Diagnóstico</span>
+                <span class="example-spacer"></span>
+                <i class="material-icons" style="color: white">search</i>
+            </mat-toolbar-row>
+
+            <mat-toolbar-row id="btn-diagnostico" [routerLink]="[ '/home/diagnostico']">
+                <span *ngIf="isExpanded || isShowing" style="color: white">Oftalmólogo</span>
+                <span class="example-spacer"></span>
+                <i class="material-icons" style="color: white">person</i>
+            </mat-toolbar-row>
+
+            <mat-toolbar-row id="btn-diagnostico" [routerLink]="[ '/home/diagnostico']">
+                <span *ngIf="isExpanded || isShowing" style="color: white">Pacientes</span>
+                <span class="example-spacer"></span>
+                <i class="material-icons" style="color: white">person</i>
+            </mat-toolbar-row>
+
+            <mat-toolbar-row id="btn-diagnostico" [routerLink]="[ '/home/diagnostico']">
+                <span *ngIf="isExpanded || isShowing" style="color: white">Oftalmoscopio</span>
+                <span class="example-spacer"></span>
+                <i class="material-icons" style="color: white">remove_red_eye</i>
+            </mat-toolbar-row>
+
+            <mat-toolbar-row id="btn-diagnostico" [routerLink]="[ '/home/diagnostico']">
+                <span *ngIf="isExpanded || isShowing" style="color: white">Imágenes</span>
+                <span class="example-spacer"></span>
+                <i class="material-icons" style="color: white">image</i>
+            </mat-toolbar-row>
+
+            <!-- <mat-toolbar-row *ngIf="admin || ventas" [routerLink]="[ '/home/venta']" routerLinkActive="active-link">
+                <span *ngIf="isExpanded || isShowing" style="color: white">Ventas</span>
+                <span class="example-spacer"></span>
+                <i class="material-icons" style="color: white">local_offer</i>
+            </mat-toolbar-row> -->
+
+        </mat-toolbar>
+        <mat-divider></mat-divider>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

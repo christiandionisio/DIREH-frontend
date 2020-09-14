@@ -1,0 +1,9 @@
+button {
+    border: none;
+    outline: 0px none;
+}
+
+#fechaInicio,
+#fechaFin {
+    width: 100% !important;
+}

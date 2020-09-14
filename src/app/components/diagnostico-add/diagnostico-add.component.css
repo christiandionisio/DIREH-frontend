@@ -1,0 +1,13 @@
+* {
+    outline: none;
+    border: 0;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+mat-card {
+    width: 100%;
+    text-align: center
+}

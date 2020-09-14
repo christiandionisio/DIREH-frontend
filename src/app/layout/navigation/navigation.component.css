@@ -1,0 +1,81 @@
+*:focus {
+    outline: 0;
+}
+
+.example-container {
+    position: absolute;
+    top: 57px;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+button :focus {
+    outline: none;
+    border: 0;
+}
+
+mat-toolbar-row {
+    align-content: center;
+    align-self: center;
+    text-align: center;
+    width: 100%;
+    font-size: 0.7em;
+}
+
+mat-toolbar-row:hover {
+    background: rgba(72,198,298,.7);
+    cursor: pointer;
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: linear;
+    transition-delay: 0s;
+    overflow: hidden;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent; 
+}
+
+.sidenav-container {
+    position: absolute;
+    top: 52px;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+}
+
+.example-sidenav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 240px;
+    background: rgb(248, 246, 246);
+    -webkit-box-shadow: 2px -1px 10px 0px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 2px -1px 10px 0px rgba(0, 0, 0, 0.4);
+    box-shadow: 2px -1px 10px 0px rgba(0, 0, 0, 0.4);
+}
+
+.example-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: #ccc;
+    color: black;
+    border: 0px;
+    text-align: center;
+}
+
+.active-link {
+    /* background:rgb(0,0,0,0.5) */
+    background:#1a1d22
+}
+
+.mat-divider {
+    background: white;
+    display: none;
+}

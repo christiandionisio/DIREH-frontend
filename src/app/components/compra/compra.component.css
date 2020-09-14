@@ -1,0 +1,75 @@
+table {
+    width: 100%;
+}
+
+.modal .mat-form-field {
+    width: 100%;
+}
+
+.buscar .mat-form-field {
+    width: 80%
+}
+
+* {
+    outline: none;
+    border: 0;
+}
+
+
+/* Estilos de las tablas */
+
+.mat-column-numero_compra {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 10%;
+}
+
+.mat-column-proveedor {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 25%;
+}
+
+.mat-column-solicitante {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 18%;
+}
+
+.mat-column-total {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 12%;
+}
+
+.mat-column-fecha_comp {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 10%;
+}
+
+.mat-column-estado {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 10%;
+}
+
+.mat-column-acciones {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 5%;
+}
+
+.mat-column-acciones {
+    padding-right: 0px !important;
+    text-align: center !important;
+    width: 10%;
+}
+
+.material-icons {
+    color: rgb(20, 27, 83);
+}
+
+.material-icons:hover {
+    color: rgb(0, 30, 253);
+}

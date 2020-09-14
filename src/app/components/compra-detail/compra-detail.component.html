@@ -1,0 +1,197 @@
+<div class="container-fluid mt-4" style="font-size: 20px; padding-right:3em; padding-left: 3em">
+    <i class="material-icons" style="font-size: 30px">ballot</i> Detalle de Orden de Compra (N°{{ idParam }})
+</div>
+
+<div class="container mt-4">
+    Se muestra el detalle de orden de compra y la validación para confirmar si efectivamente ha llegado o no una orden de compra proveniente de un proveedor. Por ello, se recomienda que verifique bien si ha llegado correctamente la mercancía.
+</div>
+
+
+<form [formGroup]="remisionForm">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button mat-flat-button style="background: rgb(114, 17, 17); color: white" (click)="imprimir()">
+                    <i style="color: white" class="material-icons"> print</i> Imprimir PDF
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="container mt-3 " id="content" #content>
+        <mat-card>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 mt-4 text-center">
+                    Guía de Remisión N°{{idParam}}
+                    <hr>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-6 text-center" style="padding-left: 115px">Ingrese los datos correspondientes</div>
+                <div class="col-md-3"></div>
+                <div class="col-md-3"></div>
+            </div>
+            <br>
+            <div class="row mt-2">
+                <div class="col-md-2"></div>
+                <div class="col-md-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Fecha de inicio de traslado</mat-label>
+                        <input matInput readonly [matDatepicker]="picker" placeholder="Choose a date" formControlName="fechaIni">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Destinatario</mat-label>
+                        <input matInput readonly formControlName="destinatario">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Punto de partida</mat-label>
+                        <input matInput readonly formControlName="puntoPartida">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Punto de llegada</mat-label>
+                        <input matInput readonly formControlName="puntoLlegada">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>RUC</mat-label>
+                        <input matInput readonly formControlName="ruc">
+                    </mat-form-field>
+
+                </div>
+                <div class="col-md-5">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Motivo de traslado</mat-label>
+                        <mat-select formControlName="motivo">
+                            <mat-option *ngFor="let motivo of motivos" [value]="motivo.value">
+                                {{motivo.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+            <div class="container mt-2 text-center">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 text-center style=" style="padding-left: 33px">Datos del bien transportado
+                </div>
+                <br>
+                <mat-card>
+                    <div class="row text-center">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-3 text-center">
+                            <strong>Ítem</strong>
+                            <hr>
+                            <ul id="friendsList"> </ul>
+                        </div>
+                        <div class="col-md-1 text-center">
+                            <strong>+Stock</strong>
+                            <hr>
+                            <ul id="friendsList0"> </ul>
+                        </div>
+                        <div class="col-md-2 text-center ">
+                            <strong>Verificar producto</strong>
+                            <hr>
+                            <ul id="friendsList2" (click)="actualizarEstado()"> </ul>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <strong>Estado</strong>
+                            <hr>
+                            <ul id="friendsList3"> </ul>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                    <hr>
+                </mat-card>
+            </div>
+
+            <br>
+
+            <div class="row mt-2">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 text-center">Datos del transportista
+                    <hr>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>RUC</mat-label>
+                        <input matInput formControlName="rucTrans">
+                    </mat-form-field>
+
+                </div>
+                <div class="col-md-5">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Denominación, apellidos y nombres</mat-label>
+                        <input matInput formControlName="denominacion">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 text-center">Datos de la unidad de transporte y conductor
+                    <hr>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Marca y placa</mat-label>
+                        <input matInput formControlName="marcaPlaca">
+                    </mat-form-field>
+
+                </div>
+                <div class="col-md-5">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Licencia de conducir</mat-label>
+                        <input matInput formControlName="licencia">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </mat-card>
+        <br><br>
+        <div class="row">
+            <div class="col-md-2"><a mat-button [routerLink]="[ '/home/compra' ]">Regresar</a></div>
+            <div class="col-md-8 text-center"><button id="guardar" mat-flat-button color="primary" (click)="guardarRemision()">Guardar Todo</button></div>
+            <div class="col-md-2">
+                <button mat-flat-button style="background: rgb(114, 17, 17); color: white" (click)="imprimir()">
+                    <i style="color: white" class="material-icons"> print</i> Imprimir PDF
+                </button>
+            </div>
+        </div>
+        <br><br>
+    </div>
+</form>

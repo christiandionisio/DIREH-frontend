@@ -1,0 +1,85 @@
+<div class="container-fluid mt-4" style="font-size: 20px; padding-right:3em; padding-left: 3em">
+    <i class="material-icons" style="font-size: 30px">edit</i> Editar Proveedor
+</div>
+
+<div class="container mt-4">
+    Coloque correctamente los datos que correspondan.
+</div>
+
+<div class="container mt-1 ">
+    <mat-card>
+        <form class="mt-2" [formGroup]="editProveedorForm">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 text-center" style="font-size: 1.7em">
+                    RUC - {{idParam}}
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="nombre">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Direccion</mat-label>
+                        <input matInput formControlName="direccion">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Telefono</mat-label>
+                        <input matInput formControlName="telefono">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>RUC</mat-label>
+                        <input matInput formControlName="ruc">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Celular</mat-label>
+                        <input matInput formControlName="celular">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row text-right mt-2">
+                <div class="col-md-4"></div>
+                <div class="col-md-6">
+                    <a mat-button [routerLink]="[ '/home/productos' ]"> Regresar</a>
+                    <button class="ml-2" mat-raised-button color="primary" (click)="onSubmit()">Actualizar</button>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </form>
+    </mat-card>
+</div>

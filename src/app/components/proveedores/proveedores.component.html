@@ -1,0 +1,161 @@
+<div class="container-fluid mt-4" style="font-size: 20px; padding-right:3em; padding-left: 3em">
+    <i class="material-icons" style="font-size: 30px"> accessibility </i> Proveedores
+</div>
+
+<div class=" container-fluid mt-4" style="padding-right:4em; padding-left: 4em">
+    <div class="row buscar">
+        <div class="col-md-6 ">
+            <i class="material-icons"> search </i>
+            <mat-form-field class="mt-3">
+                <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Buscar..." autocomplete="off">
+            </mat-form-field>
+        </div>
+        <div class="col-md-6 text-right" style="padding-top: 1.8em">
+            <button class="mr-3" mat-raised-button style="background: #1D6F42; color: white" (click)="exportarProveedores()">
+                <i class="material-icons" style="color:white"> archive</i>Exportar</button>
+            <button data-toggle="modal" data-target="#modalNuevoProveedor" mat-flat-button color="primary" style="bottom: 0em;">Nuevo Proveedor</button>
+        </div>
+    </div>
+
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="ruc">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> RUC </th>
+                <td mat-cell *matCellDef="let row"> {{row.ruc}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> NOMBRE </th>
+                <td mat-cell *matCellDef="let row"> {{row.nombre}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="direccion">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> DIRECCIÓN </th>
+                <td mat-cell *matCellDef="let row"> {{row.direccion}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="telefono">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> TELÉFONO </th>
+                <td mat-cell *matCellDef="let row"> {{row.telefono}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="celular">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> CELULAR </th>
+                <td mat-cell *matCellDef="let row"> {{row.celular}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> CORREO </th>
+                <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ACCIONES </th>
+                <td mat-cell *matCellDef="let row">
+                    <button mat-icon-button [routerLink]="['/home/proveedores', row.ruc ]">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="borrarProveedor(row._id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[10, 15, 20]"></mat-paginator>
+    </div>
+</div>
+<br><br><br>
+
+<!-- Modal -->
+<div class="modal fade" id="modalNuevoProveedor" tabindex="-1" role="dialog" aria-labelledby="modalNuevoProveedor" aria-hidden="true" data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form [formGroup]="nuevoProveedorForm" (ngSubmit)="onSubmit()">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle"> <i class="material-icons">
+                            group_add
+                        </i> Nuevo Proveedor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    Ingrese los datos del nuevo proveedor
+                    <div class="container from-group text-center mt-3 mb-3">
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <mat-form-field appearance="legacy">
+                                    <mat-label>RUC</mat-label>
+                                    <input formControlName="ruc" matInput>
+                                    <mat-hint align="end">{{formControls.ruc.value?.length || 0}}/11</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <mat-form-field appearance="legacy">
+                                    <mat-label>Nombre</mat-label>
+                                    <input formControlName="nombre" matInput>
+                                    <mat-hint align="end">{{formControls.nombre.value?.length || 0}}/60</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <mat-form-field appearance="legacy">
+                                    <mat-label>Direccion</mat-label>
+                                    <input formControlName="direccion" matInput>
+                                    <mat-hint align="end">{{formControls.direccion.value?.length || 0}}/60</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <mat-form-field appearance="legacy">
+                                    <mat-label>Teléfono</mat-label>
+                                    <input formControlName="telefono" matInput>
+                                    <mat-hint align="end">{{formControls.telefono.value?.length || 0}}/9</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-5">
+                                <mat-form-field appearance="legacy">
+                                    <mat-label>Celular</mat-label>
+                                    <input formControlName="celular" matInput>
+                                    <mat-hint align="end">{{formControls.celular.value?.length || 0}}/9</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <mat-form-field appearance="legacy">
+                                    <mat-label>Email</mat-label>
+                                    <input formControlName="email" matInput>
+                                    <mat-hint align="end">{{formControls.email.value?.length || 0}}/50</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button mat-button color="warn" data-dismiss="modal">Cerrar</button>
+                    <button mat-flat-button color="primary" type="submit">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

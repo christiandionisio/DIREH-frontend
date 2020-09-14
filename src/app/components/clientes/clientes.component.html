@@ -1,0 +1,185 @@
+<div class="container-fluid mt-4" style="font-size: 20px; padding-right:3em; padding-left: 3em">
+    <!-- <i class="material-icons" style="font-size: 30px"> accessibility </i> -->
+    <i class="material-icons" style="font-size: 30px"> person_pin </i> Clientes
+</div>
+
+<div class=" container-fluid mt-4" style="padding-right:4em; padding-left: 4em">
+    <div class="row buscar">
+        <div class="col-md-6 ">
+            <i class="material-icons"> search </i>
+            <mat-form-field class="mt-3">
+                <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Buscar..." autocomplete="off">
+            </mat-form-field>
+        </div>
+        <div class="col-md-12 text-right" style="padding-top: 1.8em">
+            <button class="mr-3" mat-raised-button style="background: #1D6F42; color: white; bottom: 1.15em;" (click)="exportarClientes()">
+                <i class="material-icons" style="color:white"> archive</i>Exportar</button>
+            <button data-toggle="modal" data-target="#modalNuevoCliente" mat-flat-button color="primary" style="bottom: 1.15em;">Nuevo Cliente</button>
+        </div>
+    </div>
+
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="dni">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> DNI </th>
+                <td mat-cell *matCellDef="let row"> {{row.dni}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="nombres">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> NOMBRES </th>
+                <td mat-cell *matCellDef="let row"> {{row.nombres}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="apellidos">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> APELLIDOS </th>
+                <td mat-cell *matCellDef="let row"> {{row.apellidos}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="direccion">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> DIRECCIÓN </th>
+                <td mat-cell *matCellDef="let row"> {{row.direccion}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="telefono">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> TELÉFONO </th>
+                <td mat-cell *matCellDef="let row"> {{row.telefono}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="celular">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> CELULAR </th>
+                <td mat-cell *matCellDef="let row"> {{row.celular}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> CORREO </th>
+                <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ACCIONES </th>
+                <td mat-cell *matCellDef="let row">
+                    <button mat-icon-button [routerLink]="['/home/clientes', row.dni ]">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="borrarCliente(row._id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[10, 15, 20]"></mat-paginator>
+    </div>
+</div>
+<br><br><br>
+
+<!-- Modal -->
+<div class="modal fade" id="modalNuevoCliente" tabindex="-1" role="dialog" aria-labelledby="modalNuevoCliente" aria-hidden="true" data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form [formGroup]="nuevoClienteForm" (ngSubmit)="onSubmit()">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle"> <i class="material-icons">
+                            person_add
+                        </i> Nuevo Cliente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cerrar()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center" style="font-weight: 500;">
+                    Ingrese los datos del nuevo cliente
+                    <div class="container from-group text-center mt-3 mb-3">
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <mat-form-field appearance="legacy">
+                                    <mat-label>DNI</mat-label>
+                                    <input maxlength="8" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" formControlName="dni" matInput autocomplete="off">
+                                    <mat-hint align="end">{{dni.value?.length || 0}}/8</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <mat-form-field appearance="legacy">
+                                    <mat-label>Nombres</mat-label>
+                                    <input maxlength="60" formControlName="nombres" matInput autocomplete="off"
+                                    onKeypress="if (event.keyCode != 32 && (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode != 241 && event.keyCode != 209 && event.keyCode != 225 && event.keyCode != 233 && event.keyCode != 237 && event.keyCode != 243 && event.keyCode != 250 && event.keyCode != 193 && event.keyCode != 201 && event.keyCode != 205 && event.keyCode != 211 && event.keyCode != 218) event.returnValue = false;">
+                                    <mat-hint align="end">{{nombres.value?.length || 0}}/60</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <mat-form-field appearance="legacy">
+                                    <mat-label>Apellidos</mat-label>
+                                    <input maxlength="60" formControlName="apellidos" matInput autocomplete="off"
+                                    onKeypress="if (event.keyCode != 32 && (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode != 241 && event.keyCode != 209 && event.keyCode != 225 && event.keyCode != 233 && event.keyCode != 237 && event.keyCode != 243 && event.keyCode != 250 && event.keyCode != 193 && event.keyCode != 201 && event.keyCode != 205 && event.keyCode != 211 && event.keyCode != 218) event.returnValue = false;">
+                                    <mat-hint align="end">{{apellidos.value?.length || 0}}/60</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <mat-form-field appearance="legacy">
+                                    <mat-label>Direccion</mat-label>
+                                    <input maxlength="60" formControlName="direccion" matInput autocomplete="off">
+                                    <mat-hint align="end">{{direccion.value?.length || 0}}/60</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <mat-form-field appearance="legacy">
+                                    <mat-label>Teléfono</mat-label>
+                                    <input maxlength="9" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" formControlName="telefono" matInput autocomplete="off">
+                                    <mat-hint align="end">{{telefono.value?.length || 0}}/9</mat-hint>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-5">
+                                <mat-form-field appearance="legacy">
+                                    <mat-label>Celular</mat-label>
+                                    <input maxlength="9" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" formControlName="celular" matInput autocomplete="off">
+                                    <mat-hint align="end">{{celular.value?.length || 0}}/9</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <mat-form-field appearance="legacy">
+                                    <mat-label>Email</mat-label>
+                                    <input maxlength="50" formControlName="email" matInput autocomplete="off">
+                                    <mat-hint align="end">{{email.value?.length || 0}}/50</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button mat-button color="warn" data-dismiss="modal" (click)="cerrar()">Cerrar</button>
+                    <button mat-flat-button color="primary" type="submit">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

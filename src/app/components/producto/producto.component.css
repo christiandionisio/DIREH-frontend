@@ -1,0 +1,67 @@
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    width: 60%;
+}
+
+* {
+    outline: none;
+    border: 0;
+}
+
+.modal .mat-form-field {
+    width: 100%;
+}
+
+.buscar .mat-form-field {
+    width: 80%
+}
+
+
+/* Estilos de las tablas */
+
+.mat-column-codigo {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 10%;
+}
+
+.mat-column-nombre {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 20%;
+}
+
+.mat-column-descripcion {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 30%;
+}
+
+.mat-column-stock {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 10%;
+}
+
+.mat-column-precio {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 10%;
+}
+
+.mat-column-acciones {
+    padding-right: 0px !important;
+    text-align: center !important;
+    width: 10%;
+}
+
+
+/* .mat-cell {
+    font-size: 14px;
+    min-height: 48px;
+    text-align: center;
+    border-right: 1px solid #eee;
+} */

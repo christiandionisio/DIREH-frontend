@@ -1,0 +1,51 @@
+<div class="bg-modal">
+    <div class="modal-contents">
+        <div class="titulo">
+            <div class="logo align-middle" style="position:relative">
+                <span style="position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 70%;
+                height: 70%;
+                font-size: 23px !important;
+                margin: auto;
+                font-family: Roboto;
+                font-size: 1.9em">Sistema de Diagnóstico de Retinopatía Hipertensiva (DIREH)</span>
+            </div>
+            <!-- <div class="descripcion" style="color: white">
+                Iniciar Sesión
+            </div> -->
+        </div>
+        <div class="contenido mt-4">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Correo</mat-label>
+                    <input id="correo" matInput formControlName="correo">
+                    <mat-error *ngIf="correo.invalid">El correo es obligatorio</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="">
+                    <mat-label>Contraseña</mat-label>
+                    <input id="password" matInput formControlName="password" [type]="hide ? 'password' : 'text'" (keyup)="detectaMayusculas($event)">
+                    <mat-icon style="cursor:pointer" matSuffix (click)="hide = !hide">
+                        {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <!-- <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error> -->
+                    <mat-hint align="end" *ngIf="mayusculas">MAYÚSCULAS ACTIVADAS</mat-hint>
+                </mat-form-field>
+
+                <div class="form-group mt-4">
+                    <button mat-raised-button color="primary" style="width: 72%;">INICIAR SESIÓN</button>
+                </div>
+            </form>
+        </div>
+        <br>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <span class=""> FISI - UNMSM 2020 </span>
+        </div>
+    </footer>
+</div>

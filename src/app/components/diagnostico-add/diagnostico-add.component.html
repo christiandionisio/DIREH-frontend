@@ -1,0 +1,176 @@
+<div class="container-fluid mt-4" style="font-size: 24px; font-weight: 500; padding-right:2em; padding-left: 2em">
+    <i class="material-icons" style="font-size: 30px">search</i> Diagnóstico de Retinopatía Hipertensiva
+</div>
+
+<form class="mt-2" [formGroup]="nuevoDiagnosticoForm">
+    <div class="row" style="padding-right:3em; padding-left: 3em; width: 100%;">
+        <div class="col-md-5">
+            <div class="row mt-3 text-left">
+                <div class="col-md-12">
+                    <link href="https://cdnjs.cloudflare.com/ajax/libs/ratchet/2.0.2/css/ratchet.css" rel="stylesheet"/>
+                    <!-- <label style="
+                    background: #1D6F42;
+                    color: white;" 
+                    for="imageUpload" class="col-md-5 mb-3 mat-raised-button" color="primary"><i class="material-icons"> image </i>Subir Imagen</label>
+                    <input type="file" id="imageUpload"  (change)="onFileChange($event)" accept="image/*" style="display: none"> -->
+                    
+                    <!-- <div> -->
+                        <!-- <label for="file-input"> -->
+                            <img *ngIf="!imagen" src="../../../assets/empty.jpg" 
+                                style="width: 397px; height: 403px;">
+                            <img *ngIf="imagen" id="imagen" src="../../../assets/imagenes/{{imagen}}" 
+                                style="width: 397px; height: 403px;">
+                        <!-- </label> -->
+                        <!-- <input id="file-input" name="foto" type="file" style="display: none" (change)="fileChangeEvent($event)" /> -->
+                    <!-- </div> -->
+                    <mat-form-field appearance="fill" style="width: 70%;">
+                        <mat-label>Resultado Diagnóstico</mat-label>
+                        <input matInput readonly formControlName="resultado_diagnostico">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row col-md-7 mt-5">
+            <div class="col-md-6">
+                <mat-form-field appearance="fill">
+                    <mat-label>Paciente</mat-label>
+                    <mat-select matInput formControlName="paciente" (selectionChange)="cambiarPaciente(nuevoDiagnosticoForm.value.paciente.id_paciente)">
+                        <mat-select-trigger>{{nuevoDiagnosticoForm.value.paciente.nombres}} {{nuevoDiagnosticoForm.value.paciente.apaterno}}</mat-select-trigger>
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                            {{option.dni}} - {{option.nombres}} {{option.apaterno}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Imagen</mat-label>
+                    <mat-select matInput formControlName="imagen" (selectionChange)="mostrarImagen(nuevoDiagnosticoForm.value.imagen.ruta_imagen)">
+                        <mat-select-trigger>{{nuevoDiagnosticoForm.value.imagen.ruta_imagen}}</mat-select-trigger>
+                        <mat-option *ngFor="let option2 of filteredOptions2 | async" [value]="option2">
+                            {{option2.ruta_imagen}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Oftalmólogo</mat-label>
+                    <input matInput readonly formControlName="oftalmologo">
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field appearance="fill">
+                    <mat-label>Diagnóstico Médico</mat-label>
+                    <mat-select matInput formControlName="diagnostico_medico">
+                        <!-- <mat-option >Ninguno</mat-option> -->
+                        <mat-option value="Positivo">Positivo</mat-option>
+                        <mat-option value="Negativo">Negativo</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="row col-md-12" style="text-align: center;">
+                <div class="col-md-4">
+                    <button mat-raised-button color="primary" style="width: 150px;" [routerLink]="[ '/home/diagnostico' ]">
+                        Volver</button>
+                </div>
+                <div class="col-md-4">
+                    <button mat-raised-button color="primary" style="width: 160px;" (click)="ejecutar_diagnostico()">
+                        Ejecutar Diagnóstico</button>
+                </div>
+                <div class="col-md-4">
+                    <button mat-raised-button color="primary" style="width: 150px;" (click)="guardar_diagnostico()">
+                        Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+            <!-- <div class="row">
+                <div class="col-md-8" style="font-size: 1.7em">
+                    DNI - {{dniParam}}
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Direccion</mat-label>
+                        <input matInput formControlName="direccion">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <mat-form-field appearance="fill">
+                        <mat-label>E-Mail</mat-label>
+                        <input matInput formControlName="email">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-2"></div>
+                <div class="col-md-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Nombres</mat-label>
+                        <input matInput formControlName="nombres">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Apellidos</mat-label>
+                        <input matInput formControlName="apellidos">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>DNI</mat-label>
+                        <input matInput formControlName="dni">
+                    </mat-form-field>
+
+                </div>
+                <div class="col-md-2">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Edad</mat-label>
+                        <input matInput formControlName="edad">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Rol</mat-label>
+                        <mat-select formControlName="role">
+                            <mat-option *ngFor="let rol of roles" [value]="rol.value">
+                                {{rol.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row text-right mt-2">
+                <div class="col-md-4"></div>
+                <div class="col-md-6">
+                    <a mat-button [routerLink]="[ '/home/diagnostico' ]"> Regresar</a>
+                    <button class="ml-2" mat-raised-button color="primary" (click)="onSubmit()">Actualizar</button>
+                </div>
+                <div class="col-md-2"></div>
+            </div> -->
+</form>
+    

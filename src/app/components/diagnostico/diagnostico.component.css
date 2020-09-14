@@ -1,0 +1,67 @@
+table {
+    width: 100%;
+}
+
+.modal .mat-form-field {
+    width: 100%;
+}
+
+.buscar .mat-form-field {
+    width: 80%
+}
+
+mat-icon {
+    outline: none;
+    border: 0 !important;
+}
+
+
+/* Estilos de las tablas */
+
+.mat-column-dni {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 10%;
+}
+
+.mat-column-nombres {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 12%;
+}
+
+.mat-column-apellidos {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 14%;
+}
+
+.mat-column-direccion {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 21%;
+}
+
+.mat-column-rol {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 10%;
+}
+
+.mat-column-email {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 18%;
+}
+
+.mat-column-edad {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 5%;
+}
+
+.mat-column-acciones {
+    padding-right: 0px !important;
+    text-align: center !important;
+    width: 10%;
+}
