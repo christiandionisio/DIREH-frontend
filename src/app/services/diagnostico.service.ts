@@ -28,7 +28,7 @@ export class DiagnosticoService {
 
     realizarDiagnostico(formData): Observable<any> {
         let headers = new HttpHeaders().set('Content-Type', 'multipart/form-data');
-        return this._http.post('http://34.71.45.5:5000/model/direh/', formData, { headers: headers });
+        return this._http.post('http://34.66.4.178:5000/model/direh/', formData, { headers: headers });
     }
 
     guardarDiagnostico(diagnostico): Observable<any> {
