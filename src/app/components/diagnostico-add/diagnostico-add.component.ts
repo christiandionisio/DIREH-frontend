@@ -218,7 +218,7 @@ export class DiagnosticoAddComponent implements OnInit {
     //console.log(imagen);
 
     if (this.nuevoDiagnosticoForm.controls.paciente.valid && this.nuevoDiagnosticoForm.controls.imagen.valid){
-      fetch('http://34.66.4.178:5000/model/direh/', {
+      fetch('http://34.72.78.16:5000/model/direh/', {
           method: 'POST',
         
           body: formData
